@@ -1,0 +1,12 @@
+[
+ { "label": "prefs", "js": "localStorage.setItem('claudeGames.muted', '1'); localStorage.removeItem('claudeGames.lang'); localStorage.removeItem('surfTT.v1'); location.reload(); 'reload'", "wait": 4500 },
+ { "label": "title", "js": "game.hold(true); game.autoPause = false; game.step(2.6); 'ok'", "wait": 600, "shot": "1-title" },
+ { "label": "ride1p", "js": "game.start({ beach: 'cove', mode: 'contest', who: 'teddy', levels: { teddy: 'easy' } }); game.step(3.2); game.autopilot('good'); game.step(4); JSON.stringify(game.info().surfers.map(s => [s.x, s.u, s.score]))", "wait": 600, "shot": "2-ride1p" },
+ { "label": "air", "js": "var n = 0; while (!game.ride.surfers[0].trick && n++ < 400) game.step(1/60, true); game.step(0.1); JSON.stringify(game.info().surfers[0])", "wait": 600, "shot": "3-air" },
+ { "label": "buddy", "js": "game.autopilot(null); game.buddy(); game.step(1.1); JSON.stringify(game.info().buddy)", "wait": 600, "shot": "4-buddy" },
+ { "label": "lift", "js": "game.step(1.4); JSON.stringify(game.info().surfers[0])", "wait": 600, "shot": "5-lift" },
+ { "label": "results", "js": "game.autopilot('good'); var n = 0; while (game.info().state !== 'results' && n++ < 60) game.step(2, true); game.step(1.6); document.getElementById('rHead').textContent", "wait": 600, "shot": "6-results" },
+ { "label": "ride2p", "js": "game.start({ beach: 'big', mode: 'free', who: 'both', levels: { teddy: 'normal', tommy: 'easy' } }); game.step(3.2); game.autopilot('good'); game.step(5); JSON.stringify(game.info().surfers.map(s => [s.x, s.u]))", "wait": 600, "shot": "7-ride2p" },
+ { "label": "pause", "js": "game.pause(true); game.step(0.1); 'paused'", "wait": 500, "shot": "8-pause" },
+ { "label": "zh", "js": "game.pause(false); game.home(); Kit.lang.set('zh'); game.step(0.5); 'zh'", "wait": 800, "shot": "9-title-zh" }
+]
