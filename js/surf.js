@@ -22,9 +22,9 @@
   };
   const LEVELS = {
     // 🐣 for Tommy (5): steering help back to the middle of the face, big floaty airs, every trick lands
-    easy: { id: 'easy', turn: 1.9, aMax: 0.7, help: true, popMin: 1.0, popBonus: 2.2, popExtra: 1.2, minAirVy: 3.0, airG: 7, trickTime: 0.42, assist: true, hop: 2.6, weedR: 0.55, dolR: 3.2 },
+    easy: { id: 'easy', turn: 3.0, aMax: 0.7, help: true, popMin: 1.0, popBonus: 2.2, popExtra: 1.2, minAirVy: 3.0, airG: 7, trickTime: 0.42, assist: true, hop: 2.6, weedR: 0.55, dolR: 3.2 },
     // 🔥 for Teddy (8): sharper turns, real gravity, finish your spin before you land
-    normal: { id: 'normal', turn: 2.6, aMax: 0.85, help: false, popMin: 2.0, popBonus: 0.6, popExtra: 1.8, minAirVy: 0, airG: 9.8, trickTime: 0.5, assist: false, hop: 2.8, weedR: 0.85, dolR: 2.4 },
+    normal: { id: 'normal', turn: 3.4, aMax: 0.85, help: false, popMin: 2.0, popBonus: 0.6, popExtra: 1.8, minAirVy: 0, airG: 9.8, trickTime: 0.5, assist: false, hop: 2.8, weedR: 0.85, dolR: 2.4 },
   };
   const NAMES = { teddy: 'TEDDY', tommy: 'TOMMY', foxy: 'FOXY', froggy: 'FROGGY' };
   const CPUS = { foxy: { name: 'FOXY', emoji: '🦊' }, froggy: { name: 'FROGGY', emoji: '🐸' } };
@@ -65,8 +65,7 @@
       over: false, done: false, bug: o.bug || null,
     };
     const humans = o.players || [];
-    let cpuLevel = !humans.length || humans.some((p) => (p.level || 'easy') === 'easy') ? 'easy' : 'normal';
-    if (r.bug === 'cpuStrong') cpuLevel = 'normal';
+    const cpuLevel = !humans.length || humans.some((p) => (p.level || 'easy') === 'easy') ? 'easy' : 'normal';
     const slots = [[10, 0.45], [4.5, 0.66], [15.5, 0.3], [0.5, 0.74]];
     humans.forEach((p, i) => {
       r.surfers.push(makeSurfer(r, r.surfers.length, p.who, true, p.level || 'easy', slots[r.surfers.length], p.pilot ? PILOTS[p.pilot](B.rng(seed * 7 + i + 1)) : null));
@@ -74,7 +73,9 @@
     if (o.cpu) {
       for (const id of ['foxy', 'froggy']) {
         const i = r.surfers.length;
-        r.surfers.push(makeSurfer(r, i, id, false, cpuLevel, slots[i], PILOTS.cpu(B.rng(seed * 13 + i), cpuLevel)));
+        // (broken on purpose for the checks: Foxy and Froggy ride all out, like the careful 8-year-old)
+        const pilot = r.bug === 'cpuStrong' ? PILOTS.good(B.rng(seed * 13 + i)) : PILOTS.cpu(B.rng(seed * 13 + i), cpuLevel);
+        r.surfers.push(makeSurfer(r, i, id, false, cpuLevel, slots[i], pilot));
       }
     }
     r.height = (x) => height(r, x);

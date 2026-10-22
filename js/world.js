@@ -511,7 +511,7 @@
       return pts;
     };
     spray = make(700, 0.3);
-    foamPts = make(700, 0.75);
+    foamPts = make(700, 0.55);
     burstPts = make(400, 0.42);
     sparkPts = make(300, 0.35);
   }

@@ -1,0 +1,7 @@
+[
+ { "label": "prefs", "js": "localStorage.setItem('claudeGames.muted', '1'); localStorage.removeItem('claudeGames.lang'); localStorage.removeItem('surfTT.v1'); location.reload(); 'reload'", "wait": 4500 },
+ { "label": "title", "js": "game.hold(true); game.autoPause = false; game.step(2.6); 'ok'", "wait": 500, "shot": "l1-title" },
+ { "label": "ride1p", "js": "game.start({ beach: 'sunny', mode: 'contest', who: 'tommy', levels: { tommy: 'easy' } }); game.step(3.2); game.autopilot('kid'); game.step(4); game.buddy(); game.step(1.2); JSON.stringify(game.info().buddy)", "wait": 500, "shot": "l2-ride1p" },
+ { "label": "results", "js": "game.autopilot('good'); var n = 0; while (game.info().state !== 'results' && n++ < 60) game.step(2, true); game.step(1.6); document.getElementById('rHead').textContent", "wait": 500, "shot": "l3-results" },
+ { "label": "ride2p", "js": "game.start({ beach: 'cove', mode: 'contest', who: 'both', levels: { teddy: 'normal', tommy: 'easy' } }); game.step(3.2); game.autopilot('kid'); game.step(5); 'ok'", "wait": 500, "shot": "l4-ride2p" }
+]

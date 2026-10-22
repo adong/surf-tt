@@ -149,6 +149,7 @@
   #hud { position: fixed; inset: 0; pointer-events: none; z-index: 6; transition: opacity 0.3s; }
   .hudright { position: absolute; right: max(10px, var(--safe-r)); top: calc(var(--safe-t) + 8px); display: flex; gap: 8px; align-items: center; pointer-events: auto; }
   #timer { position: relative; display: flex; align-items: center; gap: 6px; height: 46px; padding: 0 12px 0 8px; border-radius: 16px; background: rgba(20, 18, 31, 0.55); border: 3px solid #fff; font-family: var(--display); font-size: 20px; pointer-events: none; overflow: hidden; }
+  @media (max-width: 620px) { .hudright { width: 100px; flex-wrap: wrap; justify-content: flex-end; row-gap: 6px; } #timer { order: 2; height: 38px; font-size: 16px; } }
   #timer b { position: absolute; left: 0; bottom: 0; height: 5px; width: 100%; background: linear-gradient(90deg, #8fe8ff, #ffd400); transform-origin: left; }
   #timer span { font-variant-numeric: tabular-nums; min-width: 2.6em; text-align: right; }
   #board { position: absolute; left: calc(max(10px, var(--safe-l)) + 58px); top: calc(var(--safe-t) + 8px); display: flex; flex-direction: column; gap: 5px; pointer-events: none; }

@@ -37,7 +37,7 @@
   const TREAT = { 'ICE CREAM': '冰淇淋', WATER: '水', 'JUICE BOX': '果汁', COOKIE: '饼干', WATERMELON: '西瓜', BANANA: '香蕉' };
   const SPIN = { 'SPIN!': '转一圈技巧！', 'DOUBLE SPIN!': '转两圈技巧！', 'TRIPLE SPIN!': '转三圈技巧！' };
   const PLACE = (n) => `第${n}名`;
-  L.rule(/^(SPIN!|DOUBLE SPIN!|TRIPLE SPIN!) \+(\d+)( ✨)?$/, (m, w, n, g) => `${SPIN[w]} +${n}${g || ''}`);
+  L.rule(/^(SPIN!|DOUBLE SPIN!|TRIPLE SPIN!) \+(\d+)( ✨)?$/, (m, w, n, g) => `${SPIN[w]}+${n}${g || ''}`);
   L.rule(/^SUPER SPIN ×(\d+)! \+(\d+)( ✨)?$/, (m, k, n, g) => `超级技巧，转${k}圈！+${n}${g || ''}`);
   L.rule(/^AIR! \+(\d+)( ✨)?$/, (m, n, g) => `飞起来啦！+${n}${g || ''}`);
   L.rule(/^CARVE! \+(\d+)( ✨)?$/, (m, n, g) => `漂亮转弯！+${n}${g || ''}`);
